@@ -90,6 +90,14 @@
     gap: 0.75rem;
     letter-spacing: 0.02em;
   }
+  @media (max-width: 520px) {
+    .brand-title {
+      white-space: normal;
+      flex-wrap: wrap;
+      line-height: 1.1;
+      font-size: clamp(1.7rem, 8.5vw, 2.4rem);
+    }
+  }
   .login-wrap > p { max-width: 460px; margin-left: auto; margin-right: auto; }
   form {
     display: flex;

@@ -1,9 +1,12 @@
 <script>
   import '../app.css';
   import Icon from '$lib/Icon.svelte';
+  import { injectAnalytics } from '@vercel/analytics/sveltekit';
   import { createSupabaseBrowserClient } from '$lib/supabase-browser.js';
   import { invalidate, afterNavigate } from '$app/navigation';
   import { onMount } from 'svelte';
+
+  injectAnalytics();
 
   let { data, children } = $props();
 
@@ -24,7 +27,7 @@
 </script>
 
 <nav class="topnav">
-  <a class="brand" href="/matches"><Icon name="ball" size={20} /> <span>WC League</span></a>
+  <a class="brand" href="/matches"><Icon name="ball" size={20} /> <span>World Cup League</span></a>
 
   <button
     class="hamburger"
@@ -55,6 +58,7 @@
 <style>
   .topnav {
     position: relative;
+    z-index: 50;
     display: flex;
     align-items: center;
     gap: 1rem;
