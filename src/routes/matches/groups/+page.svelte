@@ -13,10 +13,12 @@
 
 <div class="wrap">
   <div class="page-head">
-    <h1>Group Stage Results</h1>
+    <div class="head-text">
+      <h1>Group Stage Results</h1>
+      <p class="sub">Informational only — group matches aren't predicted or scored.</p>
+    </div>
     <a class="back-link" href="/matches"><Icon name="ball" size={16} /> Back to predictions</a>
   </div>
-  <p class="sub">Informational only — group matches aren't predicted or scored.</p>
 
   {#if data.matchesError}
     <p class="error">Couldn't load matches: {data.matchesError}</p>
@@ -45,17 +47,22 @@
 <style>
   .wrap { max-width: 640px; margin: 0 auto; padding: 1.5rem 1rem; }
   .page-head {
-    display: flex; align-items: center; justify-content: space-between;
+    display: flex; align-items: flex-start; justify-content: space-between;
     gap: 1rem; flex-wrap: wrap;
   }
+  .head-text { min-width: 0; }
   .back-link {
+    flex: none;
     display: inline-flex; align-items: center; gap: 0.4rem;
     text-decoration: none; color: var(--accent-bright); font-weight: 600;
     font-size: 0.9rem; border: 1px solid var(--surface-border);
     border-radius: 999px; padding: 0.4rem 0.9rem; transition: all 0.15s ease;
   }
   .back-link:hover { border-color: var(--accent); box-shadow: var(--glow); }
-  .sub { color: var(--muted); font-size: 0.9rem; margin-top: -0.25rem; }
+  .sub { color: var(--muted); font-size: 0.9rem; margin: 0.25rem 0 0; }
+  @media (max-width: 540px) {
+    .page-head { flex-direction: column; gap: 0.85rem; }
+  }
   .row {
     display: grid;
     grid-template-columns: 1fr auto 1fr;

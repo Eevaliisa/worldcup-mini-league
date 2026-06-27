@@ -158,10 +158,12 @@
 
 <div class="wrap">
   <div class="page-head">
-    <h1>Knockout Predictions</h1>
+    <div class="head-text">
+      <h1>Knockout Predictions</h1>
+      <p class="sub">Predict knockout matches before kickoff. Group results are on a separate page.</p>
+    </div>
     <a class="group-link" href="/matches/groups"><Icon name="chart" size={16} /> Group stage results</a>
   </div>
-  <p class="sub">Predict knockout matches before kickoff. Group results are on a separate page.</p>
 
   <HowItWorks />
 
@@ -288,18 +290,23 @@
 <style>
   .wrap { max-width: 640px; margin: 0 auto; padding: 1.5rem 1rem; }
   .page-head {
-    display: flex; align-items: center; justify-content: space-between;
+    display: flex; align-items: flex-start; justify-content: space-between;
     gap: 1rem; flex-wrap: wrap;
   }
+  .head-text { min-width: 0; }
   .group-link {
+    flex: none;
     display: inline-flex; align-items: center; gap: 0.4rem;
     text-decoration: none; color: var(--accent-bright); font-weight: 600;
     font-size: 0.9rem; border: 1px solid var(--surface-border);
     border-radius: 999px; padding: 0.4rem 0.9rem; transition: all 0.15s ease;
   }
   .group-link:hover { border-color: var(--accent); box-shadow: var(--glow); }
-  .sub { color: var(--muted); font-size: 0.9rem; margin-top: -0.25rem; }
+  .sub { color: var(--muted); font-size: 0.9rem; margin: 0.25rem 0 0; }
   .empty { color: var(--muted); font-style: italic; }
+  @media (max-width: 540px) {
+    .page-head { flex-direction: column; gap: 0.85rem; }
+  }
   .match-card {
     background: var(--surface);
     border: 1px solid var(--surface-border);
