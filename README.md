@@ -85,8 +85,9 @@ node --env-file=.env scripts/verify-scoring.js  # checks every scoring tier agai
 2. Add the same `.env` variables as Vercel environment variables.
 3. Deploy, then add your Vercel URL to Supabase's Site URL + redirect URLs.
 4. Score syncing runs via [`.github/workflows/sync-scores.yml`](.github/workflows/sync-scores.yml)
-   every 15 minutes. Add `CRON_SECRET` as a GitHub Actions secret and set your
-   deployed domain in the workflow's curl URL.
+   every 15 minutes. Add two **GitHub Actions secrets** — `CRON_SECRET` and
+   `SYNC_URL` (`https://<your-domain>/api/cron-sync-scores`). The workflow reads
+   both from secrets, so no deployment URL is committed to the repo.
 
 To target a different competition, change the football-data competition code
 (`WC`) in `scripts/seed-matches.js` and `src/routes/api/cron-sync-scores/+server.js`.

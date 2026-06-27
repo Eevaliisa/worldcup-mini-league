@@ -11,5 +11,8 @@ jobs:
     steps:
       - name: Call sync endpoint
         run: |
-          curl -sf -X GET "https://YOUR-APP-NAME.vercel.app/api/cron-sync-scores" \
-            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}"
+          curl -sf -X GET "$SYNC_URL" \
+            -H "Authorization: Bearer $CRON_SECRET"
+        env:
+          SYNC_URL: ${{ secrets.SYNC_URL }}
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
