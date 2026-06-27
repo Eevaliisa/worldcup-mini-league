@@ -1,0 +1,15 @@
+name: Sync World Cup Scores
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch: {}
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call sync endpoint
+        run: |
+          curl -sf -X GET "https://YOUR-APP-NAME.vercel.app/api/cron-sync-scores" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}"
