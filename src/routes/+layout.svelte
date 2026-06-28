@@ -1,6 +1,7 @@
 <script>
   import '../app.css';
   import Icon from '$lib/Icon.svelte';
+  import { page } from '$app/stores';
   import { injectAnalytics } from '@vercel/analytics/sveltekit';
   import { createSupabaseBrowserClient } from '$lib/supabase-browser.js';
   import { invalidate, afterNavigate } from '$app/navigation';
@@ -49,6 +50,16 @@
       <button class="logout" onclick={() => supabase.auth.signOut().then(() => location.reload())}>
         Log out
       </button>
+    {/if}
+    {#if $page.url.pathname === '/login'}
+      <a
+        class="repo-link"
+        href="https://github.com/Eevaliisa/worldcup-mini-league"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <Icon name="github" size={18} /> <span>Source on GitHub</span>
+      </a>
     {/if}
   </div>
 </nav>
@@ -122,6 +133,8 @@
   }
   .logout:hover { color: var(--accent-bright); border-color: var(--accent); box-shadow: var(--glow-soft); }
   .brand:hover { text-shadow: var(--glow-text); }
+
+  .repo-link { margin-left: auto; }
 
   @media (max-width: 540px) {
     .brand { display: inline-flex; }
