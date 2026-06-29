@@ -68,7 +68,8 @@
 
 <style>
   .topnav {
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: 50;
     display: flex;
     align-items: center;
