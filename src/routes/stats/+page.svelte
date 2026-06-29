@@ -51,13 +51,14 @@
   </section>
 
   <section>
-    <h2><Icon name="ghost" size={20} /> Most Delusional Prediction</h2>
-    <p class="sub">Furthest from reality, on either scoreline or total goals.</p>
+    <h2><Icon name="ghost" size={20} /> Most Delusional Predictors</h2>
+    <p class="sub">The players whose predictions landed furthest from reality — top 3, one wild miss each.</p>
     {#if data.delusional.length === 0}
       <p class="empty">Nobody's gone mad yet.</p>
     {/if}
-    {#each data.delusional as d}
+    {#each data.delusional as d, i}
       <div class="stat-row">
+        <span class="rank">#{i + 1}</span>
         <strong>{d.display_name}</strong> said {d.home_fulltime_pred}–{d.away_fulltime_pred}
         for {d.home_team} vs {d.away_team} (actual: {d.home_fulltime}–{d.away_fulltime})
       </div>
@@ -102,5 +103,6 @@
   .sub { font-size: 0.85rem; color: var(--muted); margin-top: -0.25rem; }
   .stat-row { padding: 0.5rem 0; border-bottom: 1px solid var(--surface-border); }
   .stat-row strong { color: var(--text); }
+  .rank { color: var(--accent-bright); font-weight: 700; margin-right: 0.35rem; }
   .empty { color: var(--muted); font-style: italic; }
 </style>
