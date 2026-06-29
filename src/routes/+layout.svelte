@@ -42,6 +42,7 @@
 
   <div id="nav-links" class="links" class:open={menuOpen}>
     <a href="/matches"><Icon name="ball" size={18} /> Matches</a>
+    <a href="/bracket"><Icon name="bracket" size={18} /> Overview</a>
     <a href="/scoreboard"><Icon name="trophy" size={18} /> Scoreboard</a>
     <a href="/stats"><Icon name="chart" size={18} /> Fun Stats</a>
     <a href="/recap"><Icon name="target" size={18} /> Recap</a>
