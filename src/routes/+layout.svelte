@@ -44,6 +44,7 @@
     <a href="/matches"><Icon name="ball" size={18} /> Matches</a>
     <a href="/scoreboard"><Icon name="trophy" size={18} /> Scoreboard</a>
     <a href="/stats"><Icon name="chart" size={18} /> Fun Stats</a>
+    <a href="/recap"><Icon name="target" size={18} /> Recap</a>
     <a href="/about"><Icon name="info" size={18} /> About</a>
     {#if data.user}
       <a href="/profile"><Icon name="user" size={18} /> Profile</a>
