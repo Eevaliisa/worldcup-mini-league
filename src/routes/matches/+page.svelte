@@ -9,6 +9,13 @@
   let knockoutMatches = $derived(data.matches.filter((m) => m.is_knockout));
   const supabase = createSupabaseBrowserClient();
 
+  // Finished matches are shown by default; the user can hide them with one click.
+  let showFinished = $state(true);
+  let hasFinished = $derived(knockoutMatches.some((m) => m.status === 'finished'));
+  let visibleMatches = $derived(
+    showFinished ? knockoutMatches : knockoutMatches.filter((m) => m.status !== 'finished')
+  );
+
   let predictionsByMatch = $state(data.predictionsByMatch);
   let savingId = $state(null);
   let errors = $state({});
@@ -235,7 +242,20 @@
       <h1>Knockout Predictions</h1>
       <p class="sub">Predict knockout matches before kickoff. Group results are on a separate page.</p>
     </div>
-    <a class="group-link" href="/matches/groups"><Icon name="chart" size={16} /> Group stage results</a>
+  </div>
+
+  <div class="match-actions">
+    <a class="pill-link" href="/matches/groups"><Icon name="chart" size={16} /> Group stage results</a>
+    {#if hasFinished}
+      <button
+        class="pill-link"
+        aria-pressed={!showFinished}
+        onclick={() => (showFinished = !showFinished)}
+      >
+        <Icon name={showFinished ? 'eye-off' : 'eye'} size={16} />
+        {showFinished ? 'Hide finished matches' : 'Show finished matches'}
+      </button>
+    {/if}
   </div>
 
   <HowItWorks />
@@ -248,7 +268,11 @@
     <p class="empty">No knockout matches yet — they appear here as the bracket fills in.</p>
   {/if}
 
-  {#each knockoutMatches as match (match.id)}
+  {#if knockoutMatches.length > 0 && visibleMatches.length === 0}
+    <p class="empty">All matches are finished and hidden. <button class="inline-link" onclick={() => (showFinished = true)}>Show them again</button></p>
+  {/if}
+
+  {#each visibleMatches as match (match.id)}
     {@const locked = isLocked(match)}
     {@const finished = match.status === 'finished'}
     {@const existing = predictionsByMatch[match.id]}
@@ -393,16 +417,26 @@
     gap: 1rem; flex-wrap: wrap;
   }
   .head-text { min-width: 0; }
-  .group-link {
+  .match-actions {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 0.6rem; flex-wrap: wrap; margin: 0.75rem 0 1.25rem;
+  }
+  .pill-link {
     flex: none;
     display: inline-flex; align-items: center; gap: 0.4rem;
     text-decoration: none; color: var(--accent-bright); font-weight: 600;
-    font-size: 0.9rem; border: 1px solid var(--surface-border);
+    font-size: 0.9rem; font-family: inherit; border: 1px solid var(--surface-border);
+    background: transparent; cursor: pointer;
     border-radius: 999px; padding: 0.4rem 0.9rem; transition: all 0.15s ease;
   }
-  .group-link:hover { border-color: var(--accent); box-shadow: var(--glow); }
+  .pill-link:hover { border-color: var(--accent); box-shadow: var(--glow); }
+  .pill-link:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 2px; }
   .sub { color: var(--muted); font-size: 0.9rem; margin: 0.25rem 0 0; }
   .empty { color: var(--muted); font-style: italic; }
+  .inline-link {
+    background: none; border: none; padding: 0; font: inherit; cursor: pointer;
+    color: var(--accent-bright); text-decoration: underline;
+  }
   @media (max-width: 540px) {
     .page-head { flex-direction: column; gap: 0.85rem; }
   }
