@@ -9,7 +9,9 @@ the final).
 ## Features
 
 - **Per-match predictions** — call the score of each upcoming knockout match,
-  and pick how it's decided: 90 minutes, extra time, or penalties.
+  and pick how it's decided: 90 minutes, extra time, or penalties. Scores are
+  validated (and a draw must go to penalties), and a saved pick locks the card
+  until you hit **Change prediction**.
 - **Once-a-day Confidence 2×** — double the points on the one match you feel
   surest about each day.
 - **Predictions lock at kickoff** — automatically, and enforced on the server
@@ -19,11 +21,19 @@ the final).
 - **Automatic scoring** — when a knockout match ends, real results are pulled
   in and everyone's predictions are scored within a few minutes. Nothing to
   refresh, no scores typed in by hand.
+- **Knockout bracket** — a "Road to the Final" overview of the whole knockout
+  tree that updates after every result; hover or tap any tie to trace where its
+  teams came from and where they go next.
+- **Prediction recap** — a "What did we predict?" page that lines up everyone's
+  picks under each finished result, with a bit of playful ribbing for anyone who
+  forgot to predict.
 - **Match reactions & Fun Stats** — react to finished matches ("VAR robbed
   me", "Called it", "Devastated"…) and earn playful awards: biggest upset
-  callers, shootout psychics, the most delusional scorelines, and a reaction
+  callers, shootout psychics, the most delusional predictors, and a reaction
   leaderboard.
 - **Hot takes** — add a one-line comment to any prediction.
+- **Tidy your view** — colour-coded match cards (upcoming, live, finished) and a
+  one-click toggle to hide finished matches once the list gets long.
 - **Group-stage results** — past group games are shown for reference (they
   aren't predicted).
 - **Profiles** — pick a display name and a cartoon animal avatar.
